@@ -1,0 +1,108 @@
+/*External CSS to format the layout of my web site*/
+
+#container
+{
+	margin: 0 auto;
+	width: 70%;
+	background: #faf0e0;
+	font-family: verdana, sans serif;
+	border-style: solid;
+	border-color: #8c573a;
+
+}
+
+#header
+{
+	background:#FFF;
+	padding: 5px;
+}
+
+#header h1
+{
+	margin: 0;
+	color:	#6d4c39;
+	font-size: 90%;
+	text-align: right;
+}
+
+#navigation
+{
+	float: left;
+	width: 100%;
+	/*background:#9E9EAE;*/
+	background:#8c573a;
+}
+
+#navigation ul
+{
+	margin: 0;
+	padding: 0;
+}
+
+#navigation ul li
+{
+	list-style-type: none;
+	display: inline;
+}
+
+#navigation  li a
+{
+	display: block;
+	float: left;
+	padding: 5px 10px;
+	color: #fff;
+	text-decoration: none;
+	border-right: 1px solid#fff;
+}
+
+#navigation  li a:hover
+{
+	background:#ead0c3;
+	color: #8c573a;
+}
+
+#content
+{
+	clear: left;
+	padding: 20px;
+}
+
+#content h2
+{
+	color:#6d4c39;
+	font-size: 110%;
+	margin: 0 0 .5em;
+}
+
+#footer
+{
+	background:#6d4c39;
+	text-align: right;
+	padding: 20px;
+	height: 1%;
+	color: #fff;
+}
+
+a:link
+{
+	color: #3c3288;
+	text-decoration: none;
+}
+
+a:active
+{
+	color: #3366FF;
+	text-decoration: none;
+}
+
+a:visited
+{
+	color: #3366FF;
+	text-decoration: none;
+}
+
+a:hover
+{
+	color: #7A7ACC;
+	text-decoration: none;
+}
