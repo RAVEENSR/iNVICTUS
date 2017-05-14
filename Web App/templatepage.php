@@ -1,6 +1,5 @@
 <?php 
 include ("headfile.php");
-include ("detectlogin.php");
  ?>
 
 <div class="section no-pad-bot" id="index-banner">

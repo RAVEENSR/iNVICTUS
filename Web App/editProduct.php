@@ -1,24 +1,22 @@
 <?php
-include("db.php");
-
-if(isset($_POST["submit"]) && $_POST["submit"]!="") {
-    $usersCount = count($_POST["productName"]);
-    for($i=0;$i<$usersCount;$i++) {
-        mysql_query("UPDATE users set userName='" . $_POST["productName"][$i] . "', password='" . $_POST["tag1"][$i] . "', firstName='" . $_POST["tag2"][$i] . "', lastName='" . $_POST["tag3"][$i] . "',firstName='" . $_POST["tag4"][$i] . "',firstName='" . $_POST["tag5"][$i] . "' WHERE userId='" . $_POST["productId"][$i] . "'");
-    }
-    header("Location:products.php");
-    echo"deleteSuccessMessage()"
-    echo"<script>";
-    echo"function deleteSuccessMessage() {";
-    echo"alert('Products have been successfully Deleted!');"; 
-    echo"}";
-    echo"</script>";
-}
-?>
-<?php 
 include ("headfile.php"); 
-include ("detectlogin.php");
+include("db.php");
+/*
+if(isset($_POST["submit"]) && $_POST["submit"]!="") {
+    $usersCount = count($_POST["productId"]);
+    echo $usersCount;
+    for($i=0;$i<$usersCount;$i++) {
+        $result=sqlsrv_query($conn,"UPDATE Item set imageurl='".$_POST["imageurl"][$i]."',tag1='".$_POST["tag1"][$i]."',tag2='".$_POST["tag2"][$i]."',tag3='".$_POST["tag3"][$i]."',tag4='".$_POST["tag4"][$i]."',tag5='".$_POST["tag5"][$i]."'WHERE itemName='".$_POST["productId"][$i]."'") or die( print_r( sqlsrv_errors(),true));
+    }
+    echo "<h5 class='center header col s12 light'>You have successfully edited the product!<br/></h5>";
+    echo "<center>";
+    echo "<h1>Redirecting to Edit/Delete Page...</h1>";
+    echo "</center>";
+    echo '<meta http-equiv="refresh" content="3; url=update_delete.php" />';	
+}else{
+} */
 ?>
+
     <title>Edit Product Details</title>
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
@@ -29,16 +27,17 @@ include ("detectlogin.php");
     </div>
 
     <div class="container">
-    <form class="col s12" action="" method="post">
+    <form class="col s12" action="editSuccess.php" method="post">
         <table>
             <tr>
-                <td>Edit User</td>
+                <td><h2>Edit User</h2></td>
             </tr>
-            <?php
+            <?php  
+                echo "<title>Edit Product Details</title>";              
                 $rowCount = count($_POST["items"]);
                 for($i=0;$i<$rowCount;$i++) {
-                    $result = mysql_query("SELECT * FROM users WHERE userId='" . $_POST["items"][$i] . "'");
-                    $row[$i]= mysql_fetch_array($result);
+                    $result1 = sqlsrv_query($conn,"SELECT * FROM Item WHERE itemName='".$_POST["items"][$i]."'") or die( print_r( sqlsrv_errors(), true));;
+                    $row[$i]= sqlsrv_fetch_array($result1,SQLSRV_FETCH_ASSOC) or die( print_r( sqlsrv_errors(), true));
             ?>
                     <tr>
                         <td>
@@ -46,8 +45,14 @@ include ("detectlogin.php");
                                 <tr>
                                     <td><label>Product Name</label></td>
                                     <td>
-                                        <input type="hidden" name="productId[]" class="txtField" value="<?php echo $row[$i]['productId']; ?>">
-                                        <input type="text" name="productName[]" class="txtField" value="<?php echo $row[$i]['productName']; ?>">
+                                        <input type="hidden" name="productId[]" class="txtField" value="<?php echo $row[$i]['itemName']; ?>">
+                                        <input type="text" disabled name="productName[]" class="txtField" value="<?php echo $row[$i]['itemName']; ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label>Image URL</label></td>
+                                    <td>
+                                        <input type="text" name="imageurl[]" class="txtField" value="<?php echo $row[$i]['imageurl']; ?>">
                                     </td>
                                 </tr>
                                 <tr>

@@ -1,6 +1,5 @@
 <?php 
 include ("headfile.php"); 
-include ("detectlogin.php");
 ?>
     <title>Product Details</title>
     <div class="section no-pad-bot" id="index-banner">
@@ -13,8 +12,12 @@ include ("detectlogin.php");
 
     <div class="container">
         <?php 
-          if (true) { //isset($_SESSION['shopOwner'])
-            include ("productDisplay.php"); 
+          if (isset($_SESSION['shopName'])) { 
+            echo "<div class='row center'>";
+            echo "<h3 class='center header col s12 light'>Choose an Option</h3><br/><br/>";
+            echo "<a class='waves-effect waves-light btn center' href='insert.php'>Insert a Product</a>&nbsp&nbsp";
+            echo "<a class='waves-effect waves-light btn center' href='update_delete.php'>Edit/Delete a Product</a>";
+            echo "</div>";
           }else{
             echo "<div class='row center'>";
             echo "<h3 class='center header col s12 light'>Please Login First</h3><br/>";

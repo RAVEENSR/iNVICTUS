@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!--HTML document to define the layout of the head and the navigation bar-->
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +21,7 @@
         <ul class="right hide-on-med-and-down">
             <li><a href="index.php">Home</a></li>
             <?php 
-                if (isset($_SESSION['shopOwner'])) {
+                if (isset($_SESSION['shopName'])) {
                     echo "<li><a href='products.php'>Products</a></li>";
                     echo "<li><a href='logout.php'>Log Out</a></li>";
                 }else{
@@ -30,7 +33,7 @@
         <ul id="nav-mobile" class="side-nav">
             <li><a href="index.php">Home</a></li>
             <?php 
-                if (isset($_SESSION['shopOwner'])) {
+                if (isset($_SESSION['shopName'])) {
                     echo "<li><a href='products.php'>Products</a></li>";
                     echo "<li><a href='logout.php'>Log Out</a></li>";
                 }else{

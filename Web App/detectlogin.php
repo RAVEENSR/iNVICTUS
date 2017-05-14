@@ -4,7 +4,7 @@
             <div class="col s12 m12 l12">
                 <?php 
                 if (isset($_SESSION['shopName'])) {
-                    echo "<h5 class='right black-text'>Name: ".$_SESSION['shopName']." is loged in</h5>";
+                    echo "<h5 class='right black-text'>Name: ".$_SESSION['shopName']." is logged in</h5>";
                 } 
                 ?>
             </div>

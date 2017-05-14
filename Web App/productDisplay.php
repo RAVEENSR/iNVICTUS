@@ -21,8 +21,8 @@
                           </div>
                           <div class="row">
                             <div class="input-field col s12">
-                              <input  id="quantity" type="text" class="validate" name="quantity" required> 
-                              <label for="quantity">Quantity</label>
+                              <input  id="image" type="text" class="validate" name="image" required> 
+                              <label for="image">Image URL</label>
                             </div>
                           </div>
                           <div class="row">
@@ -83,59 +83,72 @@
                       //include a db.php file to connect to database
                       include ("db.php");
                       //create a new variable containing a SQL statement retrieving names of products from the product table
-                      $SQL="select prodId, prodName, prodPicName,prodDescrip,prodPrice,prodQuantity from product";
+                      $SQL1="SEELCT * from ItemShop where shopName='".$_SESSION['shopName']."'";
 
                       //Create a new variable containing the execution of the SQL query i.e. select the records or get out
-                      $result=mysqli_query($conn,$SQL) or die (mysqli_error($conn));
+                      $result1=sqlsrv_query($conn,$SQL1) or die (sqlsrv_error($conn));
 
-                      echo "<form name='productForm' method='post' action=''>";
-                      echo "<table>";
-                      echo "<thead>";
-                      echo "<tr>";
-                      echo "<th>Select</th>";
-                      echo "<th>Product Name</th>";
-                      echo "<th>Tag 1</th>";
-                      echo "<th>Tag 2</th>";
-                      echo "<th>Tag 3</th>";
-                      echo "<th>Tag 4</th>";
-                      echo "<th>Tag 5</th>";
-                      echo "</tr>";
-                      echo "</thead>";
-                      echo "<tbody>";
-
-                      $i=0;
-                      while($row = mysql_fetch_array($result)) {
+                      if($result1){
+                        
+                        echo "<form name='productForm' method='post' action=''>";
+                        echo "<table>";
+                        echo "<thead>";
                         echo "<tr>";
-                        echo "<td><input type='checkbox' name='items[]'' value=".$row["userId"]."></td>";
-                        echo "<td>".$row['productName']."</td>";
-                        echo "<td>".$row['tag1']."</td>";
-                        echo "<td>".$row['tag2']."</td>";
-                        echo "<td>".$row['tag3']."</td>";
-                        echo "<td>".$row['tag4']."</td>";
-                        echo "<td>".$row['tag5']."</td>";
+                        echo "<th>Select</th>";
+                        echo "<th>Product Name</th>";
+                        echo "<th>Tag 1</th>";
+                        echo "<th>Tag 2</th>";
+                        echo "<th>Tag 3</th>";
+                        echo "<th>Tag 4</th>";
+                        echo "<th>Tag 5</th>";
                         echo "</tr>";
-                        $i++;
+                        echo "</thead>";
+                        echo "<tbody>";
+
+                        $i=0;
+                        while($row1 = sqlsrv_fetch_array($result1)) {
+
+                          $SQL2="select * from Item where ItemName='" . $row1['itemName']. "'";
+
+                          $result2=sqlsrv_query($conn,$SQL2) or die (sqlsrv_error($conn));
+
+                          if($result2){
+                            $row2 = sqlsrv_fetch_array($result2);
+                            echo "<tr>";
+                            echo "<td><input type='checkbox' name='items[]'' value=".$row2["itemName"]."></td>";
+                            echo "<td>".$row['itemName']."</td>";
+                            echo "<td>".$row['tag1']."</td>";
+                            echo "<td>".$row['tag2']."</td>";
+                            echo "<td>".$row['tag3']."</td>";
+                            echo "<td>".$row['tag4']."</td>";
+                            echo "<td>".$row['tag5']."</td>";
+                            echo "</tr>";
+                            $i++;
+                          }
+                        }
+                        echo "<thead>";
+                        echo "<tr>";
+                        echo "<td colspan='6'>";
+                        
+                        echo "<button class='btn waves-effect waves-light' type='submit' name='update' value='Update' onClick='setUpdateAction();'>";
+                        echo "<i class='material-icons right'>send</i>";
+                        echo "</button>";
+                        echo "<button class='btn waves-effect waves-light' type='submit' name='update' value='Update' onClick='setDeleteAction();'>";
+                        echo "<i class='material-icons right'>send</i>";
+                        echo "</button>";
+                        
+                        /*
+                        echo "<input type='button' name='update' value='Update' onClick='setUpdateAction();'/>";
+                        echo "<input type='button' name='delete' value='Delete'  onClick='setDeleteAction();' />"; */
+                        echo "</td>";
+                        echo "</tr>";
+                        echo "</thead>";
+                        echo "</tbody>";
+                        echo "</table>";
+                        echo "</form>";
+                      }else{
+
                       }
-                      echo "<thead>";
-                      echo "<tr>";
-                      echo "<td colspan='6'>";
-                      
-                      echo "<button class='btn waves-effect waves-light' type='submit' name='update' value='Update' onClick='setUpdateAction();'>";
-                      echo "<i class='material-icons right'>send</i>";
-                      echo "</button>";
-                      echo "<button class='btn waves-effect waves-light' type='submit' name='update' value='Update' onClick='setDeleteAction();'>";
-                      echo "<i class='material-icons right'>send</i>";
-                      echo "</button>"
-                      
-                      /*
-                      echo "<input type='button' name='update' value='Update' onClick='setUpdateAction();'/>";
-                      echo "<input type='button' name='delete' value='Delete'  onClick='setDeleteAction();' />"; */
-                      echo "</td>";
-                      echo "</tr>";
-                      echo "</thead>";
-                      echo "</tbody>";
-                      echo "</table>";
-                      echo "</form>";
                     ?>
                     <!--
                         <form class="col s12" action="updateProduct.php" method="post">

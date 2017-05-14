@@ -36,10 +36,10 @@ include ("headfile.php");
                             </div>
                             <div class="row">
                                 <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                                    <i class="material-icons right">send</i>
+                                    <i class="material-icons right"></i>
                                 </button>
                                 <button class="btn waves-effect waves-light" type="reset" name="reset">Reset
-                                    <i class="material-icons right">clear_all</i>
+                                    <i class="material-icons right"></i>
                                 </button>
                             </div>
         
