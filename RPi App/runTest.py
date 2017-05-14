@@ -28,10 +28,18 @@ class Connection:
 
     def createConnection():
         dsn = 'rpitestsqlserverdatasource'
-        user = 'fourBits@4bits'
-        password = '4bitsFTW'
-        database = 'TGLDB'
+        user = 'umen@phatman'
+        password = 'Fat123Man'
+        database = 'UDB'
         connString = 'DSN={0};UID={1};PWD={2};DATABASE={3};'.format(dsn,user,password,database)
+
+        #server = 'tcp:phatman.database.windows.net' 
+        #database = 'UDB' 
+        #username = 'umen' 
+        #password = 'Fat123Man' 
+        #conn = pyodbc.connect('DRIVER={ODBC Driver 13 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
+
+        
         conn = pyodbc.connect(connString)
         if conn:
             #If anything went wrong during configuration, it will happen here
@@ -41,34 +49,32 @@ class Connection:
 
     def executeQuery(conn,form):
         cursor = conn.cursor()
-        prevEmail=""
+        username=""
         while True:
-            cursor.execute('select * from [Display]')
+            cursor.execute('select * from [Dis]')
             row = cursor.fetchone()
-            #cursor.execute('truncate table [Display]')
+            #cursor.execute('truncate table [Dis]')
             if row is not None:
                 logging.info(row)
-                if prevEmail!=row[5]:
-                    prevEmail=row[5]
-                    cusId=row[0]
-                    cusName=row[8]
-                    shopName=row[7]
-                    pixmap1 = QPixmap('man.jpg')
-                    pixmap2 = QPixmap('bluejean.jpg')
-                    if cusName=='Ben':
-                        pixmap1 = QPixmap('man.jpg')
+                if username!=row[3]:
+                    username=row[3]
+                    shopName=row[0]
+                    pixmap1 = QPixmap('Images/man.jpg')
+                    pixmap2 = QPixmap('Images/bluejean.jpg')
+                    if username=='Jason':
+                        pixmap1 = QPixmap('Images/man.jpg')
                         pixmap1 = pixmap1.scaled(100, 100, QtCore.Qt.KeepAspectRatio)
-                    if cusName=='Anne':
-                        pixmap1 = QPixmap('women.jpg')
+                    if username=='Sam':
+                        pixmap1 = QPixmap('Images/women.jpg')
                         pixmap1 = pixmap1.scaled(100, 100, QtCore.Qt.KeepAspectRatio) 
-                    item=row[6]
-                    if item=='Blue Jeans':
-                        pixmap2 = QPixmap('bluejean.jpg')
+                    item=row[1]
+                    if item=='Levies 501 Jeans':
+                        pixmap2 = QPixmap('Images/501 OriginalFIT Jeans.JPG')
                         pixmap2 = pixmap2.scaled(100, 100, QtCore.Qt.KeepAspectRatio)
-                    if item=='Red Shirt':
-                        pixmap2 = QPixmap('redshirt.jpg')
+                    if item=='EFINNY Womens Party Frock':
+                        pixmap2 = QPixmap('Images/frock.png')
                         pixmap2 = pixmap2.scaled(100, 100, QtCore.Qt.KeepAspectRatio)
-                    form.updateLabelsUI(cusName,shopName,item,pixmap1,pixmap2)
+                    form.updateLabelsUI(username,shopName,item,pixmap1,pixmap2)
                     time.sleep(6) 
                 else:
                     logging.debug('Same customer found!')

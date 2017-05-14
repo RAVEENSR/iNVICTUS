@@ -58,7 +58,7 @@ class Ui_MainWindow(object):
         self.lblPicture = QtWidgets.QLabel(self.centralWidget)
         self.lblPicture.setGeometry(QtCore.QRect(350, 30, 100, 100))
         self.lblPicture.setText("")
-        self.lblPicture.setAlignment(QtCore.Qt.AlignCenter)
+        self.lblPicture.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop) #QtCore.Qt.AlignCenter
         self.lblPicture.setObjectName("lblPicture")
         self.lblProdPic = QtWidgets.QLabel(self.centralWidget)
         self.lblProdPic.setGeometry(QtCore.QRect(350, 310, 100, 100))
