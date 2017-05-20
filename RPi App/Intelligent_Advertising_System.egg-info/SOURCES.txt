@@ -1,0 +1,8 @@
+setup.py
+Intelligent_Advertising_System.egg-info/PKG-INFO
+Intelligent_Advertising_System.egg-info/SOURCES.txt
+Intelligent_Advertising_System.egg-info/dependency_links.txt
+Intelligent_Advertising_System.egg-info/requires.txt
+Intelligent_Advertising_System.egg-info/top_level.txt
+bin/mainScript.py
+bin/mainwindow.py

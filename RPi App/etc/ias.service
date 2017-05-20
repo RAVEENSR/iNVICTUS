@@ -1,0 +1,23 @@
+[Unit]
+
+Description=intelligent_advertising_system service
+
+After=multi-user.target
+
+
+
+[Service]
+Type=idle
+
+StandardOutput=null
+
+TimeoutStartSec=15
+
+ExecStart=/usr/local/bin/mainScript.py
+
+ExecStop=/usr/bin/pkill -9 mainScript.py
+
+
+[Install]
+
+WantedBy=multi-user.target

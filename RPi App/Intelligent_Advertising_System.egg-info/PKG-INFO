@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: Intelligent-Advertising-System
+Version: 2.0
+Summary: An intelligent advertising system which can help to boost shop owners income
+Home-page: https://github.com/RAVEENSAVINDA/ias-rpi-app
+Author: Raveen Savinda Rathnayake
+Author-email: raveen.s.r@gmail.com
+License: GPLv2
+Description: Testing
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python :: 3.4
