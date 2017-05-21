@@ -1,0 +1,70 @@
+[21/May/2017:17:30:34] (getlogin) Test message1
+[21/May/2017:17:30:34] (getlogin) Test message2
+[21/May/2017:17:30:34] (getlogin) Test message3
+[21/May/2017:17:59:01] (getlogin) Successfully Connected to the Database
+[21/May/2017:17:59:02] (getlogin) Select query succeded: select * from Shop where shopName='Odel'
+[21/May/2017:17:59:02] (getlogin) 'Odel' user successfully logged in
+[21/May/2017:18:04:18] (getlogin) Successfully Connected to the Database
+[21/May/2017:18:04:18] (getlogin) Select query succeded: select * from Shop where shopName='Odel'
+[21/May/2017:18:04:18] (getlogin) 'Odel' user successfully logged in
+[21/May/2017:18:54:26] (getlogin) Successfully Connected to the Database
+[21/May/2017:18:54:27] (getlogin) Select query succeded: select * from Shop where shopName='Odel'
+[21/May/2017:18:54:27] (getlogin) 'Odel' user successfully logged in
+[21/May/2017:18:55:12] (insertProduct) Select query returned null successfull: select * from Item where itemName ='My T shirt large'
+[21/May/2017:18:55:12] (insertProduct) Insert Query suceesfull: insert into Item(itemName,tag1,tag2,tag3,tag4,tag5,imageurl) values ('My T shirt large','my','tshirt','large','white','men','') AND /n
+                                insert into ItemShop (itemName,shopName) values ('My T shirt large','Odel')
+[21/May/2017:18:55:26] (update_delete) Select query successfull: SELECT * from ItemShop where shopName='Odel'
+[21/May/2017:18:55:26] (update_delete) select * from Item where ItemName='Levies 501 Jeans'
+[21/May/2017:18:55:26] (update_delete) select * from Item where ItemName='My T shirt large'
+[21/May/2017:18:55:26] (update_delete) select * from Item where ItemName='EFINNY Womens Party Frock'
+[21/May/2017:18:55:38] (editProduct) Select query successfull : SELECT * FROM Item WHERE itemName='My T shirt large'
+[21/May/2017:18:55:49] (editSuccess) Update query: UPDATE Item set imageurl='abc.com',tag1='my',tag2='tshirt',tag3='large',tag4='white',tag5='men'WHERE itemName='My T shirt large'  
+[21/May/2017:18:55:49] (editSuccess) Updating the items finished successfully
+[21/May/2017:18:55:53] (update_delete) Select query successfull: SELECT * from ItemShop where shopName='Odel'
+[21/May/2017:18:55:53] (update_delete) select * from Item where ItemName='Levies 501 Jeans'
+[21/May/2017:18:55:54] (update_delete) select * from Item where ItemName='My T shirt large'
+[21/May/2017:18:55:54] (update_delete) select * from Item where ItemName='EFINNY Womens Party Frock'
+[21/May/2017:18:56:01] (deleteProduct) Delete query successfull : DELETE FROM ItemShop WHERE itemName='My T shirt large' AND shopName='Odel'
+[21/May/2017:18:56:01] (deleteProduct) Product/s have successfully deleted
+[21/May/2017:18:56:06] (update_delete) Select query successfull: SELECT * from ItemShop where shopName='Odel'
+[21/May/2017:18:56:06] (update_delete) select * from Item where ItemName='Levies 501 Jeans'
+[21/May/2017:18:56:06] (update_delete) select * from Item where ItemName='EFINNY Womens Party Frock'
+[21/May/2017:18:56:16] (editProduct) Select query successfull : SELECT * FROM Item WHERE itemName='Levies 501 Jeans '
+[21/May/2017:18:56:22] (editSuccess) Update query: UPDATE Item set imageurl='http://i.imgur.com/cZfOf2N.pn',tag1='Levies',tag2='mens',tag3='jeans',tag4='OriginalFit',tag5='Blue'WHERE itemName='Levies 501 Jeans '  
+[21/May/2017:18:56:22] (editSuccess) Updating the items finished successfully
+[21/May/2017:18:56:32] (update_delete) Select query successfull: SELECT * from ItemShop where shopName='Odel'
+[21/May/2017:18:56:32] (update_delete) select * from Item where ItemName='Levies 501 Jeans'
+[21/May/2017:18:56:32] (update_delete) select * from Item where ItemName='EFINNY Womens Party Frock'
+[21/May/2017:18:56:37] (editProduct) Select query successfull : SELECT * FROM Item WHERE itemName='Levies 501 Jeans '
+[21/May/2017:18:56:46] (editSuccess) Update query: UPDATE Item set imageurl='http://i.imgur.com/cZfOf2N.png',tag1='Levies',tag2='mens',tag3='jeans',tag4='OriginalFit',tag5='Blue'WHERE itemName='Levies 501 Jeans '  
+[21/May/2017:18:56:46] (editSuccess) Updating the items finished successfully
+[21/May/2017:18:56:51] (update_delete) Select query successfull: SELECT * from ItemShop where shopName='Odel'
+[21/May/2017:18:56:51] (update_delete) select * from Item where ItemName='Levies 501 Jeans'
+[21/May/2017:18:56:52] (update_delete) select * from Item where ItemName='EFINNY Womens Party Frock'
+[21/May/2017:18:57:26] (insertProduct) Select query returned null successfull: select * from Item where itemName ='aaa'
+[21/May/2017:18:57:26] (insertProduct) Insert Query suceesfull: insert into Item(itemName,tag1,tag2,tag3,tag4,tag5,imageurl) values ('aaa','gg','hjg','jgjg','hj','jhg','') AND /n
+                                insert into ItemShop (itemName,shopName) values ('aaa','Odel')
+[21/May/2017:18:57:33] (update_delete) Select query successfull: SELECT * from ItemShop where shopName='Odel'
+[21/May/2017:18:57:34] (update_delete) select * from Item where ItemName='Levies 501 Jeans'
+[21/May/2017:18:57:34] (update_delete) select * from Item where ItemName='aaa'
+[21/May/2017:18:57:34] (update_delete) select * from Item where ItemName='EFINNY Womens Party Frock'
+[21/May/2017:18:57:39] (editProduct) Select query successfull : SELECT * FROM Item WHERE itemName='aaa'
+[21/May/2017:18:57:49] (editSuccess) Update query: UPDATE Item set imageurl='http://i.imgur.com/cZfOf2N.png',tag1='gg',tag2='hjg',tag3='jgjg',tag4='hj',tag5='jhg'WHERE itemName='aaa'  
+[21/May/2017:18:57:49] (editSuccess) Updating the items finished successfully
+[21/May/2017:18:57:56] (update_delete) Select query successfull: SELECT * from ItemShop where shopName='Odel'
+[21/May/2017:18:57:56] (update_delete) select * from Item where ItemName='Levies 501 Jeans'
+[21/May/2017:18:57:56] (update_delete) select * from Item where ItemName='aaa'
+[21/May/2017:18:57:56] (update_delete) select * from Item where ItemName='EFINNY Womens Party Frock'
+[21/May/2017:18:58:01] (editProduct) Select query successfull : SELECT * FROM Item WHERE itemName='aaa'
+[21/May/2017:18:58:12] (update_delete) Select query successfull: SELECT * from ItemShop where shopName='Odel'
+[21/May/2017:18:58:12] (update_delete) select * from Item where ItemName='Levies 501 Jeans'
+[21/May/2017:18:58:13] (update_delete) select * from Item where ItemName='aaa'
+[21/May/2017:18:58:13] (update_delete) select * from Item where ItemName='EFINNY Womens Party Frock'
+[21/May/2017:18:58:17] (deleteProduct) Delete query successfull : DELETE FROM ItemShop WHERE itemName='aaa' AND shopName='Odel'
+[21/May/2017:18:58:17] (deleteProduct) Product/s have successfully deleted
+[21/May/2017:18:58:23] (update_delete) Select query successfull: SELECT * from ItemShop where shopName='Odel'
+[21/May/2017:18:58:23] (update_delete) select * from Item where ItemName='Levies 501 Jeans'
+[21/May/2017:18:58:23] (update_delete) select * from Item where ItemName='EFINNY Womens Party Frock'
+[21/May/2017:18:58:27] (logout) '' session variable unsetted
+[21/May/2017:18:58:27] (logout) '' session destroyed
+[21/May/2017:18:58:27] (logout) Logout successfull

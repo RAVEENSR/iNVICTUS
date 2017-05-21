@@ -22,12 +22,19 @@ include ("headfile.php");
                         unset($_SESSION['shopName']);
                         session_unset();
                         session_destroy();
+                        
+                        // write message to the log file
+                        $log->lwrite("'".$_SESSION['shopName']."' session variable unsetted");
+                        $log->lwrite("'".$_SESSION['shopName']."' session destroyed");
+                        $log->lwrite("Logout successfull");
+                        
                         echo "<h5>You have successfully logged out!</h5>";
                         echo "<center>";
                         echo "<h1>Redirecting to Log In Page...</h1>";
                         echo "</center>";
                         echo '<meta http-equiv="refresh" content="3; url=admin.php" />';
-
+                        // close log file
+                        $log->lclose();
                     ?>
 
                 </div>

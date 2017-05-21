@@ -6,6 +6,11 @@ include ("headfile.php");
 <div class="section no-pad-bot" id="index-banner">
 	<div class="container">
 		<?php 
+			/*
+			* checking whether the session variable 'shopName' is set or not.
+			* If it is set then the Let's get started button will be displayed
+			* If not Please Login First will be displayed
+			*/
 			if (isset($_SESSION['shopName'])) { 
 				echo "<h3 class='header center orange-text'>Welcome To Intelligent Advertising System</h3>";
 				echo "<div class='row center'>";

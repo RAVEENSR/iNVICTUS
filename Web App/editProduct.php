@@ -1,20 +1,6 @@
 <?php
 include ("headfile.php"); 
 include("db.php");
-/*
-if(isset($_POST["submit"]) && $_POST["submit"]!="") {
-    $usersCount = count($_POST["productId"]);
-    echo $usersCount;
-    for($i=0;$i<$usersCount;$i++) {
-        $result=sqlsrv_query($conn,"UPDATE Item set imageurl='".$_POST["imageurl"][$i]."',tag1='".$_POST["tag1"][$i]."',tag2='".$_POST["tag2"][$i]."',tag3='".$_POST["tag3"][$i]."',tag4='".$_POST["tag4"][$i]."',tag5='".$_POST["tag5"][$i]."'WHERE itemName='".$_POST["productId"][$i]."'") or die( print_r( sqlsrv_errors(),true));
-    }
-    echo "<h5 class='center header col s12 light'>You have successfully edited the product!<br/></h5>";
-    echo "<center>";
-    echo "<h1>Redirecting to Edit/Delete Page...</h1>";
-    echo "</center>";
-    echo '<meta http-equiv="refresh" content="3; url=update_delete.php" />';	
-}else{
-} */
 ?>
 
     <title>Edit Product Details</title>
@@ -35,13 +21,20 @@ if(isset($_POST["submit"]) && $_POST["submit"]!="") {
             <?php  
                 echo "<title>Edit Product Details</title>";              
                 $rowCount = count($_POST["items"]);
+                /*
+                * previousely selected items are sent through an array via post method 
+                * selecting the all related data from the database for a given item
+                * then the result is fetched into an array and retrieved through the array 
+                */
                 for($i=0;$i<$rowCount;$i++) {
                     $result1 = sqlsrv_query($conn,"SELECT * FROM Item WHERE itemName='".$_POST["items"][$i]."'") or die( print_r( sqlsrv_errors(), true));;
                     $row[$i]= sqlsrv_fetch_array($result1,SQLSRV_FETCH_ASSOC) or die( print_r( sqlsrv_errors(), true));
+                    // write message to the log file
+                    $log->lwrite("Select query successfull : SELECT * FROM Item WHERE itemName='".$_POST["items"][$i]."'");
             ?>
                     <tr>
                         <td>
-                            <table>
+                            <table><!--Opening the table -->
                                 <tr>
                                     <td><label>Product Name</label></td>
                                     <td>
@@ -77,10 +70,12 @@ if(isset($_POST["submit"]) && $_POST["submit"]!="") {
                                     <td><label>Tag 5</label></td>
                                     <td><input type="text" name="tag5[]" class="txtField" value="<?php echo $row[$i]['tag5']; ?>"></td>
                                 </tr>
-                            </table>
+                            </table><!--Closing the table -->
                         </td>
                     </tr>
             <?php
+                // close log file
+                $log->lclose();
                 }
             ?>
             <tr>

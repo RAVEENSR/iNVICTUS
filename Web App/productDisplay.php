@@ -77,8 +77,6 @@
                 <div class="col s12 m2 l2"></div>
                 <div class="col s12 m8 l8">
                     <div class="row">
-                    <!-- -->
-
                     <?php
                       //include a db.php file to connect to database
                       include ("db.php");
@@ -89,6 +87,8 @@
                       $result1=sqlsrv_query($conn,$SQL1) or die (sqlsrv_error($conn));
 
                       if($result1){
+                        // write message to the log file
+                        $log->lwrite("Select Query Successfull : SEELCT * from ItemShop where shopName='".$_SESSION['shopName']."'");
                         
                         echo "<form name='productForm' method='post' action=''>";
                         echo "<table>";
@@ -106,6 +106,9 @@
                         echo "<tbody>";
 
                         $i=0;
+                        /*
+                        * Displaying items details which are relavent to the shop
+                        */
                         while($row1 = sqlsrv_fetch_array($result1)) {
 
                           $SQL2="select * from Item where ItemName='" . $row1['itemName']. "'";
@@ -113,6 +116,10 @@
                           $result2=sqlsrv_query($conn,$SQL2) or die (sqlsrv_error($conn));
 
                           if($result2){
+                            // write message to the log file
+                            $log->lwrite("Select Query Successfull : select * from Item where ItemName='" . $row1['itemName']. "'");
+                        
+                            
                             $row2 = sqlsrv_fetch_array($result2);
                             echo "<tr>";
                             echo "<td><input type='checkbox' name='items[]'' value=".$row2["itemName"]."></td>";
@@ -136,10 +143,6 @@
                         echo "<button class='btn waves-effect waves-light' type='submit' name='update' value='Update' onClick='setDeleteAction();'>";
                         echo "<i class='material-icons right'>send</i>";
                         echo "</button>";
-                        
-                        /*
-                        echo "<input type='button' name='update' value='Update' onClick='setUpdateAction();'/>";
-                        echo "<input type='button' name='delete' value='Delete'  onClick='setDeleteAction();' />"; */
                         echo "</td>";
                         echo "</tr>";
                         echo "</thead>";
@@ -149,61 +152,9 @@
                       }else{
 
                       }
+                       // close log file
+                    $log->lclose();
                     ?>
-                    <!--
-                        <form class="col s12" action="updateProduct.php" method="post">
-                          <div class="row">
-                            <div class="input-field col s12">
-                              <input  id="name" type="text" class="validate" name="name" required> 
-                              <label for="name">Product Name</label>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="input-field col s12">
-                              <input  id="quantity" type="text" class="validate" name="quantity" required> 
-                              <label for="quantity">Quantity</label>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="input-field col s12">
-                              <input  id="tag1" type="text" class="validate" name="tag1" required> 
-                              <label for="tag1">Tag Name 1</label>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="input-field col s12">
-                              <input  id="tag2" type="text" class="validate" name="tag2" required> 
-                              <label for="tag2">Tag Name 2</label>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="input-field col s12">
-                              <input  id="tag3" type="text" class="validate" name="tag3" required> 
-                              <label for="tag3">Tag Name 3</label>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="input-field col s12">
-                              <input  id="tag4" type="text" class="validate" name="tag4" required> 
-                              <label for="tag4">Tag Name  4</label>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="input-field col s12">
-                              <input  id="tag5" type="text" class="validate" name="tag5" required> 
-                              <label for="tag5">Tag Name 5</label>
-                            </div>
-                          </div>
-                            <div class="row">
-                                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                                    <i class="material-icons right">send</i>
-                                </button>
-                                <button class="btn waves-effect waves-light" type="reset" name="reset">Reset
-                                    <i class="material-icons right">clear_all</i>
-                                </button>
-                            </div>
-        
-                        </form> -->
                       </div>
                 </div>
                 <div class="col s12 m2 l2"></div>

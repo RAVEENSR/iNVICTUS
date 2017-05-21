@@ -25,6 +25,9 @@ include ("headfile.php");
             $result1=sqlsrv_query($conn,$SQL1) or die( print_r( sqlsrv_errors(), true));
 
             if($result1){
+              // write message to the log file
+              $log->lwrite("Select query successfull: SELECT * from ItemShop where shopName='".$_SESSION['shopName']."'");
+              
               echo "<form name='productForm' method='post' action=''>";
               echo "<table>";
               echo "<thead>";
@@ -40,14 +43,18 @@ include ("headfile.php");
               echo "</thead>";
               echo "<tbody>";
               $i=0;
+              /* 
+              * Looping through the products to display there name and tags
+              */
               while($row1 = sqlsrv_fetch_array($result1,SQLSRV_FETCH_ASSOC)) {
                 $SQL2="select * from Item where ItemName='".$row1['itemName']."'";
-
                 $result2=sqlsrv_query($conn,$SQL2) or die( print_r( sqlsrv_errors(), true));
-
-                
                   $row2 = sqlsrv_fetch_array($result2,SQLSRV_FETCH_ASSOC) or die( print_r( sqlsrv_errors(), true));
                   if(!($row2==null)){
+                    
+                    // write message to the log file
+                    $log->lwrite("select * from Item where ItemName='".$row1['itemName']."'");
+                    
                     echo "<tr>";
                     echo "<td><input type='checkbox' id=".$i." name='items[]' value='".$row2["itemName"]."'>";
                     echo "<label for=".$i.">".($i+1)."</label></td>";
@@ -72,10 +79,6 @@ include ("headfile.php");
               echo "<button class='btn waves-effect waves-light' type='submit' name='update' value='Update' onClick='setDeleteAction();'>";
               echo "<i class='material-icons right'>send</i>Delete";
               echo "</button>";
-                        
-                        /*
-                        echo "<input type='button' name='update' value='Update' onClick='setUpdateAction();'/>";
-                        echo "<input type='button' name='delete' value='Delete'  onClick='setDeleteAction();' />"; */
               echo "</td>";
               echo "</tr>";
               echo "</thead>";
@@ -83,7 +86,11 @@ include ("headfile.php");
               echo "</table>";
               echo "</form>";
             }else{
+              // write message to the log file
+              $log->lwrite("Select query unsuccessfull: SELECT * from ItemShop where shopName='".$_SESSION['shopName']."'");
             }
+             // close log file
+             $log->lclose();
           ?>
         </div>
       </div>
