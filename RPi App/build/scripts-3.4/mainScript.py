@@ -10,12 +10,13 @@ import time
 import PyQt5
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QPixmap
-from PyQt5 import QtCore
+from PyQt5 import QtCore, QtGui, QtWidgets
+import urllib.request
 
  
 # This is our window from QtCreator
 import mainwindow
- 
+""" 
 # create class for our Raspberry Pi GUI
 class MainWindow(QMainWindow, mainwindow.Ui_MainWindow):
     
@@ -23,7 +24,8 @@ class MainWindow(QMainWindow, mainwindow.Ui_MainWindow):
     def __init__(self):
         super(self.__class__, self).__init__()
         #gets defined in the UI file
-        self.setupUi(self) 
+        self.setupUi(self)
+"""
 
 class MainClass():
 
@@ -80,6 +82,7 @@ class MainClass():
     Executing the query to retrieve data from the database in azure
     """
     def executeQuery(conn,form):
+        form.displayNone() 
         #logging.debug('Connection Successfull')
         cursor = conn.cursor()
         username=""
@@ -94,21 +97,17 @@ class MainClass():
                     logging.info(row)
                     username=row[3]
                     shopName=row[0]
-                    pixmap1 = QPixmap('../Images/man.jpg')
-                    pixmap2 = QPixmap('../Images/bluejean.jpg')
-                    if username=='Jason':
-                        pixmap1 = QPixmap('../Images/man.jpg')
-                        pixmap1 = pixmap1.scaled(100, 100, QtCore.Qt.KeepAspectRatio)
-                    if username=='Sam':
-                        pixmap1 = QPixmap('../Images/women.jpg')
-                        pixmap1 = pixmap1.scaled(100, 100, QtCore.Qt.KeepAspectRatio) 
+                    userImg=row[4]
                     item=row[1]
-                    if item=='Levies 501 Jeans':
-                        pixmap2 = QPixmap('../Images/501 OriginalFIT Jeans.JPG')
-                        pixmap2 = pixmap2.scaled(100, 100, QtCore.Qt.KeepAspectRatio)
-                    if item=='EFINNY Womens Party Frock':
-                        pixmap2 = QPixmap('../Images/frock.png')
-                        pixmap2 = pixmap2.scaled(100, 100, QtCore.Qt.KeepAspectRatio)
+                    itemImg=row[5]
+                    response1 = urllib.request.urlretrieve(userImg,"image01")
+                    response2 = urllib.request.urlretrieve(itemImg,"image02")
+                    time.sleep(1) 
+                    pixmap1 = QPixmap('../etc/image01')
+                    pixmap2 = QPixmap('../etc/image02')
+                    #pixmap1 = pixmap1.scaled(150, 150, QtCore.Qt.KeepAspectRatio)
+                    #pixmap2 = pixmap1.scaled(150, 150, QtCore.Qt.KeepAspectRatio)
+
                     form.updateLabelsUI(username,shopName,item,pixmap1,pixmap2)
                     time.sleep(6) 
                 else:
@@ -134,16 +133,25 @@ class MainClass():
         
         #defining the format of the log statement
         logging.basicConfig(filename='../etc/billboardLog.log',level=logging.DEBUG,format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
-        
-        # a new app instance
+        """
+        #a new app instance
         app = QApplication(sys.argv)
         form = MainWindow()
         form.show()
+        
+        """
+        import sys
+        app = QApplication(sys.argv)
+        MainWindow = QtWidgets.QMainWindow()
+        ui = mainwindow.Ui_MainWindow()
+        ui.setupUi(MainWindow)
+        MainWindow.show()
+        
 
         conn=createConnection()
 
         #creating a thread to run queries continousely
-        gui_run_thread = Thread(name='thread_gui', target=executeQuery, kwargs={'conn': conn, 'form' : form})
+        gui_run_thread = Thread(name='thread_gui', target=executeQuery, kwargs={'conn': conn, 'form' : ui})
         gui_run_thread.daemon = True
         gui_run_thread.start()
         
